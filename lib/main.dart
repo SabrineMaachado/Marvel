@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(AppBarBottomSample());
+}
+
 class AppBarBottomSample extends StatefulWidget {
   @override
   _AppBarBottomSampleState createState() => _AppBarBottomSampleState();
@@ -33,7 +37,10 @@ class _AppBarBottomSampleState extends State<AppBarBottomSample>
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black87,
-          title: const Text('Marvel', style: TextStyle(color: Colors.red, fontSize: 30),),
+          title: const Text(
+            'Marvel',
+            style: TextStyle(color: Colors.red, fontSize: 30),
+          ),
           leading: IconButton(
             tooltip: 'Previous choice',
             icon: const Icon(Icons.arrow_back),
@@ -77,26 +84,21 @@ class _AppBarBottomSampleState extends State<AppBarBottomSample>
 }
 
 class Choice {
-  const Choice({this.title, this.icon, this.image});
-
   final String title;
-  final IconData icon;
-  final Image image;
-}  
+  final String imageUrl;
+
+  const Choice({
+    this.title,
+    this.imageUrl,
+  });
+}
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: null, icon:null: Image(image: NetworkImage("https://static.cdn.pleno.news/2019/05/spider-man-far-from-home-og-size-image-1.jpg"),),
-  const Choice(title: 'BICYCLE', icon: Icons.directions_bike),
-  const Choice(title: 'BOAT', icon: Icons.directions_boat),
-  const Choice(title: 'BUS', icon: Icons.directions_bus),
-  const Choice(title: 'TRAIN', icon: Icons.directions_railway),
-  const Choice(title: 'WALK', icon: Icons.directions_walk),
-  // const Choice(Image(image: NetworkImage("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73"),) ),
-  // const Choice(Image(image: NetworkImage("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73"),) ),
-  // const Choice(Image(image: NetworkImage("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73"),) ),
-  // const Choice(Image(image: NetworkImage("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73"),) ),
-  // const Choice(Image(image: NetworkImage("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73"),) ),
- 
+  const Choice(
+    title: "Spider Man",
+    imageUrl:
+        "https://static.cdn.pleno.news/2019/05/spider-man-far-from-home-og-size-image-1.jpg",
+  ),
 ];
 
 class ChoiceCard extends StatelessWidget {
@@ -114,15 +116,12 @@ class ChoiceCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Icon(choice.icon, size: 128.0, color: textStyle.color),
             Text(choice.title, style: textStyle),
+            SizedBox(height: 20),
+            Image(image: NetworkImage(choice.imageUrl))
           ],
         ),
       ),
     );
   }
-}
-
-void main() {
-  runApp(AppBarBottomSample());
 }
